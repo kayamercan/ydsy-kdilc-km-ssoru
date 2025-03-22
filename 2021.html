@@ -1,1 +1,64 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>YDS-YÖKDİL Soru Çöz</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    .question { margin-bottom: 20px; }
+    .option { margin: 8px 0; }
+    .correct { color: green; }
+    .incorrect { color: red; }
+    .solution { margin-top: 20px; background: #f0f0f0; padding: 10px; display: none; }
+  </style>
+</head>
+<body>
+
+<h2>YDS/YÖKDİL Deneme Sorusu</h2>
+
+<div class="question">
+  <p><strong>Soru:</strong> Which of the following is closest in meaning to the sentence above?</p>
+  <div class="option"><input type="radio" name="answer" value="A"> A) It explains a different idea.</div>
+  <div class="option"><input type="radio" name="answer" value="B"> B) It supports the same idea. ✅</div>
+  <div class="option"><input type="radio" name="answer" value="C"> C) It opposes the argument.</div>
+  <div class="option"><input type="radio" name="answer" value="D"> D) It gives an unrelated detail.</div>
+</div>
+
+<button onclick="checkAnswer()">Cevabı Kontrol Et</button>
+
+<div id="result"></div>
+<div class="solution" id="solution">
+  <strong>Çözüm:</strong> Cümle, önceki cümleyi destekleyen bir fikir sunduğu için doğru cevap B seçeneğidir. Diğer seçenekler bağlamla uyumsuzdur.
+</div>
+
+<script>
+  function checkAnswer() {
+    const options = document.getElementsByName("answer");
+    let selected = null;
+    for (const opt of options) {
+      if (opt.checked) {
+        selected = opt.value;
+        break;
+      }
+    }
+    const result = document.getElementById("result");
+    const solution = document.getElementById("solution");
+
+    if (!selected) {
+      result.innerHTML = "<p class='incorrect'>Lütfen bir seçenek seçin.</p>";
+      solution.style.display = "none";
+      return;
+    }
+
+    if (selected === "B") {
+      result.innerHTML = "<p class='correct'>Doğru cevap!</p>";
+    } else {
+      result.innerHTML = "<p class='incorrect'>Yanlış cevap! Doğru cevap B şıkkı.</p>";
+    }
+    solution.style.display = "block";
+  }
+</script>
+
+</body>
+</html>
 
